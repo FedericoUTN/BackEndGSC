@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ThingViewModel>
+
+@{
+    ViewData["Title"] = "Cosas";
+}
+<h1>Test cosas</h1>
+
+<p>
+    <a asp-action="Create">Crear</a>
+</p>
+
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var thing in Model){
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelThing => thing.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelThing => thing.Description)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@thing.Id">Ver Detalle</a> |
+                    <a asp-action="Edit" asp-route-id="@thing.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@thing.Id">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

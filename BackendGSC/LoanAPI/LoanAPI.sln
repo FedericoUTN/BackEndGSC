@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanAPI", "LoanAPI\LoanAPI.csproj", "{9E9868EE-90C1-45A2-9DD6-FE7F95187B1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6F1ADEA-3283-47F1-A9B6-6EA099A482DB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonControllerTests", "PersonControllerTests\PersonControllerTests.csproj", "{4BF6F953-85E1-460F-B5D9-B0F01CC42D82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E9868EE-90C1-45A2-9DD6-FE7F95187B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9868EE-90C1-45A2-9DD6-FE7F95187B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9868EE-90C1-45A2-9DD6-FE7F95187B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9868EE-90C1-45A2-9DD6-FE7F95187B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF6F953-85E1-460F-B5D9-B0F01CC42D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF6F953-85E1-460F-B5D9-B0F01CC42D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF6F953-85E1-460F-B5D9-B0F01CC42D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF6F953-85E1-460F-B5D9-B0F01CC42D82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA20B9AC-DB19-448D-ACDD-D028EFADFA97}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "LoanAPI.Protos";
+
+service LoanService{
+	rpc ChangeStatusLoan (RequestLoan) returns (ResponseLoan);
+	rpc Test(Req) returns (Res);
+}
+
+message RequestLoan{
+	int32 LoanId = 1;
+}
+
+message ResponseLoan{
+	bool Success = 1;
+	LoanGrpc LoanEntity = 2;
+}
+
+message LoanGrpc {
+	int32 Id = 1;
+	string Status = 2;
+}
+
+message Req {
+	string message = 1;
+}
+
+message Res {
+	string message = 1;
+}

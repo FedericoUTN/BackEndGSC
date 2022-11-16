@@ -1,0 +1,30 @@
+﻿@model ThingViewModel
+
+@{
+    ViewData["Title"] = "Detalle Cosas";
+}
+
+<h1>Detalle - Cosas</h1> 
+
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>
