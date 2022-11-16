@@ -22,6 +22,9 @@ namespace LoanAPI.Protos
             if (loan is not null)
             {
                 loan.Status = "Devuelto";
+                loan.ReturnDate = DateTime.UtcNow;
+                uow.LoanRepository.Update(loan);
+                await uow.CompleteAsync();
                 return await Task.FromResult(new ResponseLoan
                 {
                     Success = true,
