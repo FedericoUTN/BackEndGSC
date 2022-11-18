@@ -17,6 +17,16 @@ namespace LoanAPI.DataAccess
                 .Where(p => p.Address != null)
                 .ToListAsync();
         }
- 
+        public override Task<Person?> GetByIdAsync(int id)
+        {
+            
+            var result = dbSet
+                .Include(p => p.Address)
+                .Where(p => p.Address != null)
+                .SingleOrDefaultAsync(p => p.Id == id);
+                return result;
+           
+        }
+
     }
 }

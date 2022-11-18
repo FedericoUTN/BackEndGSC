@@ -22,6 +22,7 @@ namespace LoanAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Person>> Add([FromBody] Person person)
         {
+            
             var copyPerson = await uow.PersonRepository.GetByIdAsync(person.Id);
             if (copyPerson is null )
             {

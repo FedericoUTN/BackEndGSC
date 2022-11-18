@@ -1,0 +1,36 @@
+<p>{{title}}</p>
+<form action="" method="post" [formGroup]="personGroup" 
+(ngSubmit)="onSubmit()">
+<div>
+    <label for="FirstName">Nombre:</label>
+    <input type="text" formControlName="FirstName" id="FirstName">
+</div>
+<div>
+    <label for="LastName">Apellido:</label>
+    <input type="text" formControlName="LastName" id="LastName">
+</div>
+<div>
+    <label for="Email">Email:</label>
+    <input type="email" formControlName="Email" id="Email">
+</div>
+<div formGroupName="Address">
+    <div>
+        <label for="Street">Calle:</label>
+        <input type="text" formControlName="Street" id="Street">
+    </div>
+    <div>
+        <label for="Number">Numero:</label>
+        <input type="text" formControlName="Number" id="Number">
+    </div>
+    <div>
+        <label for="City">Ciudad:</label>
+        <input type="text" formControlName="City" id="City">
+    </div>
+</div>
+<button type="submit" [disabled]="!personGroup.valid">Editar</button>
+<button (click)="back()">Volver</button>
+</form>
+
+<p>{{personGroup.value | json}}</p>
+
+<div>{{person | json}}</div>

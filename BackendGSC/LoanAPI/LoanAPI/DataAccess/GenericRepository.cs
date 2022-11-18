@@ -39,9 +39,7 @@ namespace LoanAPI.DataAccess
 
         public virtual async Task<TEntity?> GetByIdAsync(int id)
         {
-            if (id == 0)
-                return null;
-               
+ 
             var savedEntity = await dbSet.SingleOrDefaultAsync(x => x.Id == id);
             return savedEntity;
         }
