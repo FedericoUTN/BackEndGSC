@@ -30,7 +30,7 @@ namespace LoanAPI.Handlers
         public SigningCredentials GetSigningCredentials()
         {
 
-            var key = Encoding.UTF8.GetBytes(_jwtOptions.Key); //Esto debe ser configurable por ambiente. Secret Manager podria ser una solucion https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows 
+            var key = Encoding.UTF8.GetBytes(_jwtOptions.Key!); //Esto debe ser configurable por ambiente. Secret Manager podria ser una solucion https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows 
             var secret = new SymmetricSecurityKey(key);
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
@@ -40,13 +40,14 @@ namespace LoanAPI.Handlers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimTypes.Name, user.UserName!)
             };
 
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
+            
 
             return claims;
         }
@@ -55,6 +56,7 @@ namespace LoanAPI.Handlers
         {
             var tokenOptions = new JwtSecurityToken(
                 claims: claims,
+                expires: DateTime.UtcNow.AddDays(30),
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
                 signingCredentials: signingCredentials);

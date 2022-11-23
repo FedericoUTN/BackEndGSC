@@ -8,8 +8,8 @@ namespace LoadApi.Entities
     {
         public string Status { get; set; } = "Prestado"; //esta Prestado o Devuelto
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
-        public DateTime CreateDate { get; set; } 
+       // [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
+        public DateTime CreateDate { get; set; }
 
         //Solo se llena cuando se devuelve
         public DateTime? ReturnDate { get; set; } 

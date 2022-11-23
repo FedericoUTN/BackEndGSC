@@ -47,7 +47,7 @@ namespace LoanAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("LoadApi.Entities.Category", b =>
@@ -64,7 +64,7 @@ namespace LoanAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("LoadApi.Entities.Loan", b =>
@@ -98,7 +98,7 @@ namespace LoanAPI.Migrations
 
                     b.HasIndex("ThingId");
 
-                    b.ToTable("Loans");
+                    b.ToTable("Loans", (string)null);
                 });
 
             modelBuilder.Entity("LoadApi.Entities.Person", b =>
@@ -128,7 +128,7 @@ namespace LoanAPI.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
                 });
 
             modelBuilder.Entity("LoadApi.Entities.Thing", b =>
@@ -150,7 +150,7 @@ namespace LoanAPI.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Things");
+                    b.ToTable("Things", (string)null);
                 });
 
             modelBuilder.Entity("LoadApi.Entities.Loan", b =>

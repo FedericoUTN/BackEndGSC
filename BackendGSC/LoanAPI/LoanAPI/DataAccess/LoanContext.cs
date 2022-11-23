@@ -24,9 +24,9 @@ namespace LoanAPI.DataAccess
                .Property(a => a.Number)
                .HasMaxLength(20);
 
-          /*  modelbuilder.Entity<Loan>()
+           /*modelbuilder.Entity<Loan>()
                .Property(l => l.CreateDate)
-               .HasDefaultValue("GETUTCDATE()");*/
+               .HasDefaultValue(DateTime.UtcNow);*/
 
 
 

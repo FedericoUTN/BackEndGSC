@@ -1,0 +1,41 @@
+<p>Persona: {{person.firstName}}</p>
+
+<h3>Pedidos de la persona</h3>
+<table>
+    <tr>
+        <th>Id Loan</th>
+        <th>Cosa</th>
+        <th>Estado</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let loan of loans">
+        <td>{{loan.id}}</td>
+        <td>{{loan.thingId}}</td>
+        <td>{{loan.status}}</td>
+        <td>
+            <button>Devuelto</button>
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>Seleccionar prestamo</h3>
+<form action="" method="post" (ngSubmit)="OnSubmit()" [formGroup]="loanGroup">
+    <div>
+        <label for="thing">Cosa:</label>
+        <select 
+        name="thing" 
+        id="thing" 
+        formControlName="thingSelect">
+        <option [ngValue]="0" selected>Elija una cosa</option>
+            <option 
+            [ngValue]="thing.id" 
+            *ngFor="let thing of things">{{thing.description}}
+            </option>
+        </select>
+    </div>
+        <button type="submit">Prestar</button>
+</form>
+
+
