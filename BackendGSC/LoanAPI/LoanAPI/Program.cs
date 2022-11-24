@@ -88,11 +88,14 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//test, incluso el .EnableGrpcWeb()
+//app.UseGrpcWeb();
+
 app.MapGrpcService<GrpcLoanService>();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Thing}/{action=Index}/{id?}");
 
 
 

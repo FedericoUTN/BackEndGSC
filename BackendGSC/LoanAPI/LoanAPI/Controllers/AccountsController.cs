@@ -58,7 +58,7 @@ namespace LoanAPI.Controllers
             return Ok(new
             {
                 token = bearer
-                //,username = user.UserName
+                ,username = user.UserName
             });
         }
 
