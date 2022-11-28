@@ -117,6 +117,14 @@
           }
         }
       },
+      "Grpc.AspNetCore.Web/2.50.0": {
+        "runtime": {
+          "lib/net6.0/Grpc.AspNetCore.Web.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.50.0.0"
+          }
+        }
+      },
       "Grpc.Core.Api/2.49.0": {
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -1864,6 +1872,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
           "Grpc.AspNetCore": "2.49.0",
           "Grpc.AspNetCore.Server.Reflection": "2.49.0",
+          "Grpc.AspNetCore.Web": "2.50.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.11",
           "Microsoft.EntityFrameworkCore": "6.0.10",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.10",
@@ -1952,6 +1961,13 @@
       "sha512": "sha512-TFp89mjjUdRWoOH8FJ661PrXSdUycT2gn4v1m/+3HUZuKi3hzaJa7ynXkyGfL+xo8DkAow5BgfjaYAgDkUfydA==",
       "path": "grpc.aspnetcore.server.reflection/2.49.0",
       "hashPath": "grpc.aspnetcore.server.reflection.2.49.0.nupkg.sha512"
+    },
+    "Grpc.AspNetCore.Web/2.50.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C62w3XcO4CzBMTAJCtZJTyE2i7BzQDI+aN+wvUnz+KkF4k+MSYuPzU3JibAMHDvwoyMVgCm2MQTwSwScfBNryg==",
+      "path": "grpc.aspnetcore.web/2.50.0",
+      "hashPath": "grpc.aspnetcore.web.2.50.0.nupkg.sha512"
     },
     "Grpc.Core.Api/2.49.0": {
       "type": "package",

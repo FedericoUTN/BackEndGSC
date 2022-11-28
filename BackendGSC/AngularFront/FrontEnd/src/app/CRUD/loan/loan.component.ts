@@ -16,8 +16,8 @@ import { ThingService } from 'src/app/services/thing.service';
 export class LoanComponent implements OnInit {
 loans! : Loan[];
 person! : Person;
-things! : Thing[];
-
+things : Thing[] = [];
+displayedColumns: string[] = ['thingId', 'status'];
   
   constructor(
     private formBuilder : FormBuilder,
@@ -33,18 +33,15 @@ things! : Thing[];
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log("el id es", id)
     if (id !== null){
       this.service.getAllbyIdPerson(+id).subscribe(res => {
         this.loans = res;
-        console.log(res);
       })
       this.servicePerson.getById(+id).subscribe(res => {
         this.person = res;
       })
       this.serviceThing.getAll().subscribe(res=> {
         this.things = res;
-        console.log(this.things)
       })
     }
    
@@ -57,7 +54,7 @@ things! : Thing[];
     if(this.loanGroup.value.thingSelect != 0){
       let loan: Loan;
       loan = {
-        thingId : this.loanGroup.value.thingSelect!, 
+        thingId : +this.loanGroup.value.thingSelect!, 
         personId : this.person.id!,
         status : "Prestado"  };
         this.service.addLoan(loan).subscribe(res => {
@@ -65,6 +62,22 @@ things! : Thing[];
         });
         this.route.navigate([`/loans/${this.person.id}`]);
     }
-    
   }
+  findThingName(id : number): string{
+    let tempThing = this.things.find(t => t.id == id);
+    if(tempThing)
+      return tempThing.description;
+    else return 'no found';
+  }
+  getUserName(): string{
+    if(this.person)
+      return this.person.firstName;
+     return ''; 
+  }
+  getEstado(status: string): boolean{
+    if(status.toLowerCase() == "devuelto")
+      return true;
+    else return false;
+  }
+  
 }

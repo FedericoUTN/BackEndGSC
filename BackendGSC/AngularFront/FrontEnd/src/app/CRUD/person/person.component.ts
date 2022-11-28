@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
@@ -6,7 +6,7 @@ import { Address } from 'src/app/entities/address';
 import { Person } from 'src/app/entities/person';
 import { User } from 'src/app/entities/user';
 import { PersonService } from 'src/app/services/person.service';
-
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
@@ -18,12 +18,16 @@ export class PersonComponent implements OnInit {
     private formBuilder : FormBuilder,
     private service : PersonService,
     private route : Router,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private _snackBar: MatSnackBar
+    ) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
      }
-  title = "Persona ABM"
+  title = "Alta de Persona"
   persons! : Person[];
   currentUser!: User;
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'address', 'opt'];
+
 
   personGroup = this.formBuilder.group({
     FirstName : ['', Validators.required],
@@ -55,6 +59,8 @@ export class PersonComponent implements OnInit {
   }
   addPerson(person : Person): void{
     this.service.addPerson(person).subscribe(p => {
+      this.persons.push(p);
+      this.snackBarSuccess()
     })
   }
   getAllPersons(){
@@ -76,4 +82,33 @@ export class PersonComponent implements OnInit {
   getDetails(id : number){
     this.route.navigate([`/person/${id}`]);
   }
+  prestarCosa(id : number){
+    this.route.navigate([`/loans/${id}`]);
+  }
+  snackBarSuccess(){
+    this._snackBar.openFromComponent(PizzaPartyAnnotatedComponent, {
+      duration: 4000,
+    });
+  }
+
+}
+
+@Component({
+  selector: 'snack-bar-created',
+  templateUrl: './snack-bar-created.html',
+  styles: [
+    `
+    :host {
+      display: flex;
+    }
+
+    .text-success {
+      color: hotpink;
+      font-size : 14px;
+    }
+  `,
+  ],
+})
+export class PizzaPartyAnnotatedComponent {
+  snackBarRef = inject(MatSnackBarRef);
 }

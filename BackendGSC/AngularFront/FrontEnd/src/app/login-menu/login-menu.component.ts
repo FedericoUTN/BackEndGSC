@@ -1,4 +1,4 @@
-import { ThisReceiver } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,10 +13,10 @@ import { LoginServiceService } from '../services/login-service.service';
 })
 export class LoginMenuComponent implements OnInit {
 
-  title = "Login de LoanApp"
   loading = false;
   submitted = false;
   returnUrl!: string;
+  
 
   loginGroup = this.formBuilder.group({
     usernameControl : ['', Validators.required],
@@ -44,12 +44,8 @@ export class LoginMenuComponent implements OnInit {
   onSubmit() : void{
     
     this.submitted = true;
-    /*
-    if(this.loginGroup.valid){
-      console.log("formulario valido");
-      this.route.navigate(['/person']);
-    };
-    */
+  
+ 
     if (this.loginGroup.invalid) {
       return;
       }
@@ -57,16 +53,19 @@ export class LoginMenuComponent implements OnInit {
       this.authenticationService.login(this.f.usernameControl.value!, this.f.passwordControl.value!)
       .pipe(first())
       .subscribe(
-      data => {{complete:
-      console.log("ruta: ", this.returnUrl); //borrar
+      {
+        complete: ()=>{
+          console.log('login correcto');
       this.router.navigate([this.returnUrl]);
-      }});
-      this.router.navigate(['/person']);
+        }
+        
+      });
       }
   
   
   Reset() : void{
       this.loginGroup.reset();
   }
+
 
 }

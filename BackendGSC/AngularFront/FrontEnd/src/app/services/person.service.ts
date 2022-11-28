@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import { Person } from '../entities/person';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Iperson } from '../entities/iperson';
 @Injectable({
   providedIn: 'root'
 })

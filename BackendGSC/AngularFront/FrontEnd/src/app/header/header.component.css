@@ -1,3 +1,15 @@
 .backcol{
-    background-color: #e5e5e5;
+    background-color: ghostwhite;
+    height: 50px;
+    position: sticky;
+}
+#left-element{
+    margin-left: 9px;
+    float:left;
+}
+#right-element{
+    text-align: right;
+    margin-right: 9px;
+    padding-top: 6px;
+    
 }

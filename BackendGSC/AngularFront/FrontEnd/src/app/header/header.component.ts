@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 import { User } from '../entities/user';
-import { LoginServiceService } from '../services/login-service.service';
+
 
 @Component({
   selector: 'app-header',
@@ -11,15 +12,37 @@ import { LoginServiceService } from '../services/login-service.service';
 export class HeaderComponent implements OnInit{
   constructor(
     private router : Router,
-    private service : LoginServiceService
-    //,private authserv : AuthenticationService
+    private service : AuthenticationService
+    
   ){}
-    isAuth : boolean = true;
+    private _isAuth : boolean = false;
     user! : User;
 
+    get isAuth(): boolean{
+      return this._isAuth
+    }
+    set isAuth(value : boolean){
+      this._isAuth = value;
+    }
     ngOnInit(): void {
-      this.isAuth = this.service.isAuthenticated();
+      this.isLogged(); 
+    }
+    isLogged(){
+      this.service.currentUser.subscribe(res=>{
+        if(res.token){
+          this.isAuth = true;
+          this.user = this.service.currentUserValue;
+          return;
+        }
+          this.isAuth = false;
+      })
       
     }
+    logOut(){
+      this.service.logout();
+      this.isAuth = false;
+      this.router.navigate(['/login']);
+    }
+    
 
 }

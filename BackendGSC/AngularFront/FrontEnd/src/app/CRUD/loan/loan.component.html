@@ -1,41 +1,76 @@
-<p>Persona: {{person.firstName}}</p>
+<p>Persona: {{getUserName()}}</p>
 
-<h3>Pedidos de la persona</h3>
-<table>
-    <tr>
-        <th>Id Loan</th>
-        <th>Cosa</th>
-        <th>Estado</th>
-        <th></th>
-    </tr>
-    <tr *ngFor="let loan of loans">
-        <td>{{loan.id}}</td>
-        <td>{{loan.thingId}}</td>
-        <td>{{loan.status}}</td>
-        <td>
-            <button>Devuelto</button>
-        </td>
-    </tr>
-</table>
 
-<hr>
 
-<h3>Seleccionar prestamo</h3>
-<form action="" method="post" (ngSubmit)="OnSubmit()" [formGroup]="loanGroup">
-    <div>
-        <label for="thing">Cosa:</label>
-        <select 
-        name="thing" 
-        id="thing" 
-        formControlName="thingSelect">
-        <option [ngValue]="0" selected>Elija una cosa</option>
-            <option 
-            [ngValue]="thing.id" 
-            *ngFor="let thing of things">{{thing.description}}
-            </option>
-        </select>
-    </div>
-        <button type="submit">Prestar</button>
-</form>
+<div class="form-class">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="material-symbols-outlined"></div>
+            <mat-card-title>Pedidos de la Persona</mat-card-title>
+          </mat-card-header>
+    <mat-table [dataSource]="loans" class="mat-elevation-z8">
+        <ng-container matColumnDef="thingId">
+            <mat-header-cell *matHeaderCellDef> Cosa </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{findThingName(element.thingId)}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option class="noclick" color="warn" [selected]="getEstado(element.status)">{{element.status}}</mat-chip-option>  
+                  </mat-chip-listbox>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</mat-card>
+    
+
+     
+</div>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Crear Prestamos
+        </mat-panel-title>
+        <mat-panel-description>
+          Haga click para desplegar 
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card class="form-class">
+        <mat-card-header>
+            <div mat-card-avatar class="material-symbols-outlined"></div>
+            <mat-card-title>Seleccionar prestamo</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+    <form action="" method="post" (ngSubmit)="OnSubmit()" [formGroup]="loanGroup">
+        <div>
+            <mat-form-field appearance="fill">
+            <mat-label >Cosa:</mat-label>
+            <mat-select 
+            name="thing" 
+            id="thing" 
+            formControlName="thingSelect">
+            
+                <mat-option 
+                [value]="thing.id" 
+                *ngFor="let thing of things">{{thing.description}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+            <div>
+            <button mat-stroked-button color="primary" type="submit">Prestar</button>
+            <button mat-stroked-button color="accent" (click)="back()">Volver</button>
+            </div>
+    </form>
+    </mat-card-content>
+    </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+
 
 

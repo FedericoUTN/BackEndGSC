@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Loan } from '../entities/loan';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,4 +18,5 @@ export class LoanService {
   addLoan(loan : Loan){
     return  this.http.post<Loan>(environment.URL + `api/Loan`, loan);
   }
+
 }

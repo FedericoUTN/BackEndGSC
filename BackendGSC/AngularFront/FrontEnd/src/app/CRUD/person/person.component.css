@@ -1,0 +1,19 @@
+.separation{
+    margin-right: 12px;
+    margin-left: 12px;
+}
+.width-field{
+    width: 95%;
+}
+.width-button{
+    width: 35%;
+}
+.mat-column-id {
+    flex: 0 0 6%;
+}
+.mat-column-firstName {
+    flex: 0 0 12%;
+}
+.mat-column-lastName {
+    flex: 0 0 12%;
+}

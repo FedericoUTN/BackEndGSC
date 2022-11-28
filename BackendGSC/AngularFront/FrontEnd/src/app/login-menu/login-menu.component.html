@@ -1,25 +1,25 @@
-<p>{{title}}</p>
-<form action="" method="post" [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
 <div>
-    <label for="username">Nombre de Usuario:</label>
-    <input type="text" name="username" id="username" 
-    formControlName="usernameControl">
+    <mat-card class="card-login form-class" id="center-container">
+        <mat-card-header>
+            <div mat-card-avatar class="material-symbols-outlined"></div>
+            <mat-card-title>Ingrese su Usuario</mat-card-title>
+            <mat-card-subtitle>* campos obligatorios</mat-card-subtitle>
+          </mat-card-header>
+    <mat-card-content>
+    <form  method="post" [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
+    <div><mat-form-field appearance="fill">
+        <mat-label >Nombre de Usuario</mat-label>
+        <input matInput type="text" name="username" id="username" 
+        formControlName="usernameControl">
+    </mat-form-field></div>
+    <div><mat-form-field appearance="fill">
+        <mat-label >Contraseña:</mat-label>
+        <input matInput type="password" name="password" id="password" 
+        formControlName="passwordControl">
+    </mat-form-field></div>
+    <div><button mat-stroked-button color="primary" type="submit" [disabled]="!loginGroup.valid">Log-in</button>
+        <button mat-stroked-button color="accent" (click)="Reset()">Reset</button></div>
+    </form>
+    </mat-card-content>
+    </mat-card>
 </div>
-<div>
-    <label for="password">Contraseña:</label>
-    <input type="password" name="password" id="password" 
-    formControlName="passwordControl">
-</div>
-<button type="submit" [disabled]="!loginGroup.valid">Log-in</button>
-<button (click)="Reset()">Reset</button>
-<a [routerLink]="['/person']"> link </a>
-</form>
-
-
-<div>
-    <p>{{loginGroup.value | json}}</p>
-</div>
-<div>
-    <p>{{loginGroup.valid}}</p>
-</div>
-

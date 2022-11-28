@@ -1,65 +1,104 @@
-<p>{{title}}</p>
+<div>
+  <mat-card class="card-personABM form-class" id="center-container">
+    <mat-card-header>
+        <div mat-card-avatar class="material-symbols-outlined"></div>
+        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-subtitle>Datos personales</mat-card-subtitle>
+      </mat-card-header>
+<mat-card-content>
 <form action="" method="post" [formGroup]="personGroup" 
 (ngSubmit)="onSubmit()">
 <div>
-    <label for="FirstName">Nombre:</label>
-    <input type="text" formControlName="FirstName" id="FirstName">
+    <mat-form-field appearance="fill" class="separation">
+    <mat-label>Nombre</mat-label>
+    <input matInput type="text" formControlName="FirstName" id="FirstName">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="separation">
+        <mat-label >Apellido:</mat-label>
+        <input matInput type="text" formControlName="LastName" id="LastName">
+        </mat-form-field>
 </div>
 <div>
-    <label for="LastName">Apellido:</label>
-    <input type="text" formControlName="LastName" id="LastName">
-</div>
-<div>
-    <label for="Email">Email:</label>
-    <input type="email" formControlName="Email" id="Email">
+    <mat-form-field appearance="fill" class="width-field">
+    <mat-label >Email:</mat-label>
+    <input matInput type="email" formControlName="Email" id="Email">
+    </mat-form-field>
 </div>
 <div formGroupName="Address">
     <div>
-        <label for="Street">Calle:</label>
-        <input type="text" formControlName="Street" id="Street">
+        <mat-form-field appearance="fill" class="separation">
+        <mat-label >Calle:</mat-label>
+        <input matInput type="text" formControlName="Street" id="Street">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"class="separation">
+            <mat-label >Numero:</mat-label>
+            <input matInput type="text" formControlName="Number" id="Number">
+            </mat-form-field>
     </div>
+    
     <div>
-        <label for="Number">Numero:</label>
-        <input type="text" formControlName="Number" id="Number">
-    </div>
-    <div>
-        <label for="City">Ciudad:</label>
-        <input type="text" formControlName="City" id="City">
+        <mat-form-field appearance="fill" class="width-field">
+        <mat-label >Ciudad:</mat-label>
+        <input matInput type="text" formControlName="City" id="City">
+        </mat-form-field>
     </div>
 </div>
-<button type="submit" [disabled]="!personGroup.valid">Crear</button>
-</form>
-
-<p>{{personGroup.value | json}}</p>
-
-<hr>
-
 <div>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Direccion</th>
-            <th></th>
-        </tr>
-                <tr *ngFor="let p of persons">
-                    <td>{{p.id}}</td>
-                    <td>{{p.firstName}}</td>
-                    <td>{{p.lastName}}</td>
-                    <td>{{p.email}}</td>
-                    <td>{{p.address.street}} {{p.address.number}}</td>
-                    <td>
-                        <button (click)="deleteById(p.id!)">X</button>
-                        <button (click)="getDetails(p.id!)">Detalles</button>
-                    </td>
-                </tr>      
-    </table>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!personGroup.valid" class="width-button">Crear</button>
 </div>
-<button (click)="getAllPersons()">actualizar</button>
-<hr>
-<p>{{persons | json}}</p>
+</form>
+</mat-card-content>
+</mat-card>
+</div>
+
+
+<mat-accordion>
+    <mat-expansion-panel hideToggle >
+      <mat-expansion-panel-header >
+        <mat-panel-title>
+          Ver Lista de Personas
+        </mat-panel-title>
+        <mat-panel-description>
+          Haga click para desplegar 
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+<mat-table [dataSource]="persons" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.address.street}} {{element.address.number}}, {{element.address.city}}</mat-cell>
+      </ng-container>
+            <ng-container matColumnDef="opt">
+        <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-raised-button (click)="deleteById(element.id!)"><mat-icon >highlight_off</mat-icon></button>
+            <button mat-raised-button (click)="getDetails(element.id!)">Editar</button>
+            <button mat-raised-button (click)="prestarCosa(element.id!)">Prestar</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</mat-expansion-panel>
+
+
 
 
 

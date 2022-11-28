@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Address } from 'src/app/entities/address';
-import { Iperson } from 'src/app/entities/iperson';
 import { Person } from 'src/app/entities/person';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -12,7 +10,7 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./details-person.component.css']
 })
 export class DetailsPersonComponent implements OnInit {
-  title = "Persona Edit"
+  title = "Editar Persona"
   person! : Person ;
 
   personGroup = this.formBuilder.group({

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.card-login {
+    max-width: 340px;
+  }
+
+.card-personABM {
+    max-width: 640px;
+  }
+  .form-class{
+    align-content: center;
+    text-align: center;
+}
+#center-container{
+  display: table;
+  margin: 0 auto;
+}
