@@ -9,6 +9,7 @@ namespace LoanAPI.DataAccess
         ILoanRepository LoanRepository {get; }
         ICategoryRepository CategoryRepository {get; } 
         IAddressRepository AddressRepository {get; }
+        IUserRepository UserRepository {get; }
         Task<int> CompleteAsync();
     }
 }

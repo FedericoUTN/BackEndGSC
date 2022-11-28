@@ -86,7 +86,7 @@ export class PersonComponent implements OnInit {
     this.route.navigate([`/loans/${id}`]);
   }
   snackBarSuccess(){
-    this._snackBar.openFromComponent(PizzaPartyAnnotatedComponent, {
+    this._snackBar.openFromComponent(CreateAnnotatedComponent, {
       duration: 4000,
     });
   }
@@ -109,6 +109,6 @@ export class PersonComponent implements OnInit {
   `,
   ],
 })
-export class PizzaPartyAnnotatedComponent {
+export class CreateAnnotatedComponent {
   snackBarRef = inject(MatSnackBarRef);
 }

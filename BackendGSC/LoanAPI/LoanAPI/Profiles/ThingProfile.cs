@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using LoadApi.Entities;
-using LoanAPI.Dto;
+using LoanAPI.Models;
 
 namespace LoanAPI.Profiles
 {
@@ -19,8 +19,8 @@ namespace LoanAPI.Profiles
                 )
                 .ForMember(
                 dest => dest.CategoryId,
-                opt => opt.MapFrom(src => $"{src.CategoryId}"
-                );
+                opt => opt.MapFrom(src => $"{src.CategoryId}")
+                ).ReverseMap(); //TWO WAY MAPPING
         }
     }
 }

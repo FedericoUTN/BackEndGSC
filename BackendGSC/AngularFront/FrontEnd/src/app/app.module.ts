@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
-import { PersonComponent, PizzaPartyAnnotatedComponent } from './CRUD/person/person.component';
+import { PersonComponent, CreateAnnotatedComponent } from './CRUD/person/person.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DetailsPersonComponent } from './CRUD/details-person/details-person.component';
 import { JwtInterceptor } from './jwt.interceptor';
@@ -35,7 +35,7 @@ import {MatMenuModule} from '@angular/material/menu';
     DetailsPersonComponent,
     LoanComponent,
     FooterComponent,
-    PizzaPartyAnnotatedComponent
+    CreateAnnotatedComponent
     
   ],
   imports: [

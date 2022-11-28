@@ -1,6 +1,6 @@
-﻿using LoadApi.Entities;
+﻿using AutoMapper;
+using LoadApi.Entities;
 using LoanAPI.DataAccess;
-using LoanAPI.Extensions;
 using LoanAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,18 +12,31 @@ namespace LoanAPI.Controllers
     {
         private readonly IUnityOfWork uow;
         private readonly ILogger<ThingController> logger;
+        private readonly IMapper mapper;
+        
 
-        public ThingController(ILogger<ThingController> logger, IUnityOfWork uow)
+        public ThingController(
+            ILogger<ThingController> logger,
+            IUnityOfWork uow,
+            IMapper mapper
+            )
         {
             this.logger = logger;
             this.uow = uow;
+            this.mapper = mapper;
+            
         }
 
         public async Task<IActionResult> Index()
         {
+            var thingDtoList = new List<ThingDTOViewModel>();
             var dbThings = await uow.ThingRepository.GetAllAsync();
-            var viewModel = dbThings.ToViewModels();
-            return View(viewModel);
+            foreach (var thing in dbThings)
+            {
+                var temp = mapper.Map<ThingDTOViewModel>(thing);
+                thingDtoList.Add(temp);
+            }
+            return View(thingDtoList);
         }
         public async Task<IActionResult> Details(int? id)
         {
@@ -33,7 +46,7 @@ namespace LoanAPI.Controllers
             if(thing == null)
                 return NotFound(thing);
 
-            return View(thing.ToViewModel());
+            return View(mapper.Map<ThingDTOViewModel>(thing));
         }
         public async Task<IActionResult> Create()
         {
@@ -44,7 +57,7 @@ namespace LoanAPI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ThingViewModel thingViewModel)
+        public async Task<IActionResult> Create(ThingDTOViewModel thingViewModel)
         {
             var lista = await uow.CategoryRepository.GetAllAsync();
             ViewData["Categorias"] = new SelectList(lista, "Id", "Description");
@@ -59,7 +72,7 @@ namespace LoanAPI.Controllers
                 return View(thingViewModel);
             }
 
-            var entity = thingViewModel.ToEntity();
+            var entity = mapper.Map<Thing>(thingViewModel);
             entity.CategoryId = 1;
             uow.ThingRepository.Add(entity);
             await uow.CompleteAsync();
@@ -79,12 +92,12 @@ namespace LoanAPI.Controllers
             {
                 return NotFound();
             }
-            return View(thing.ToViewModel());
+            return View(mapper.Map<ThingDTOViewModel>(thing));
         }
 
         [HttpPost] 
         [ValidateAntiForgeryToken] 
-        public async Task<IActionResult> Edit(int id, ThingViewModel thingViewModel)
+        public async Task<IActionResult> Edit(int id, ThingDTOViewModel thingViewModel)
         {
             var lista = await uow.CategoryRepository.GetAllAsync();
             ViewData["Categorias"] = new SelectList(lista, "Id", "Description");
@@ -95,7 +108,7 @@ namespace LoanAPI.Controllers
 
             if (ModelState.IsValid)
             {
-                uow.ThingRepository.Update(thingViewModel.ToEntity());
+                uow.ThingRepository.Update(mapper.Map<Thing>(thingViewModel));
                 await uow.CompleteAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -115,7 +128,7 @@ namespace LoanAPI.Controllers
                 return NotFound();
             }
 
-            return View(thing.ToViewModel());
+            return View(mapper.Map<ThingDTOViewModel>(thing));
         }
 
         [HttpPost, ActionName("Delete")]

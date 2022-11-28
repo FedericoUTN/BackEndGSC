@@ -10,6 +10,7 @@ namespace LoanAPI.DataAccess
         public ILoanRepository LoanRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
         public IAddressRepository AddressRepository { get; private set; }
+        public IUserRepository UserRepository { get; private set; }
         public UnityOfWork(LoanContext context)
         {
             this.context = context;
@@ -18,6 +19,7 @@ namespace LoanAPI.DataAccess
             LoanRepository = new LoanRepository(context);
             CategoryRepository = new CategoryRepository(context);
             AddressRepository = new AddressRepository(context);
+            UserRepository = new UserRepository(context);
         }
         public Task<int> CompleteAsync()
         {

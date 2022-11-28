@@ -1,10 +1,11 @@
 ﻿
 using LoanAPI.Dto;
+using LoanAPI.Entities;
 
 namespace LoanAPI.Handlers
 {
     public interface IJwtHandler
     {
-        string GenerateToken(UserDto user, IEnumerable<string> roles);
+        string GenerateToken(User user, IEnumerable<string> roles);
     }
 }

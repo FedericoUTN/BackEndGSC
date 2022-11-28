@@ -1,4 +1,5 @@
 ﻿using LoadApi.Entities;
+using LoanAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LoanAPI.DataAccess
@@ -38,5 +39,6 @@ namespace LoanAPI.DataAccess
         public DbSet<Person> Persons { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Thing> Things { get; set; }
+        public DbSet<User> users { get; set; } 
     }
 }

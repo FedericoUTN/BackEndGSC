@@ -1,6 +1,7 @@
 ﻿
 using LoanAPI.Configuration;
 using LoanAPI.Dto;
+using LoanAPI.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,7 +18,7 @@ namespace LoanAPI.Handlers
         {
             _jwtOptions = jwtOptions?.Value ?? throw new ArgumentException(nameof(jwtOptions));
         }
-        public string GenerateToken(UserDto user, IEnumerable<string> roles)
+        public string GenerateToken(User user, IEnumerable<string> roles)
         {
             var signingCredentials = GetSigningCredentials();
             var claims = GetClaims(user, roles);
@@ -36,7 +37,7 @@ namespace LoanAPI.Handlers
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
 
-        public List<Claim> GetClaims(UserDto user, IEnumerable<string> roles)
+        public List<Claim> GetClaims(User user, IEnumerable<string> roles)
         {
             var claims = new List<Claim>
             {
