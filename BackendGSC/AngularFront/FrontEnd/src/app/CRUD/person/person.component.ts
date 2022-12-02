@@ -7,6 +7,7 @@ import { Person } from 'src/app/entities/person';
 import { User } from 'src/app/entities/user';
 import { PersonService } from 'src/app/services/person.service';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+import { isThisTypeNode } from 'typescript';
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
@@ -32,7 +33,7 @@ export class PersonComponent implements OnInit {
   personGroup = this.formBuilder.group({
     FirstName : ['', Validators.required],
     LastName : ['', Validators.required],
-    Email : ['', Validators.required],
+    Email : ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     Address : this.formBuilder.group({
       Street : ['', Validators.required],
       City : ['', Validators.required],
@@ -53,14 +54,16 @@ export class PersonComponent implements OnInit {
           this.personGroup.value.Address?.City!
           )
         );
-       
+      console.log(actualPerson);
       this.addPerson(actualPerson);
+      
     }
   }
   addPerson(person : Person): void{
     this.service.addPerson(person).subscribe(p => {
       this.persons.push(p);
       this.snackBarSuccess()
+      this.getAllPersons();
     })
   }
   getAllPersons(){

@@ -6,12 +6,11 @@ namespace LoadApi.Entities
 {
     public class Loan : EntityBase
     {
-        public string Status { get; set; } = "Prestado"; //esta Prestado o Devuelto
+        public string Status { get; set; } = "Prestado";
 
        // [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
         public DateTime CreateDate { get; set; }
 
-        //Solo se llena cuando se devuelve
         public DateTime? ReturnDate { get; set; } 
         public Thing? Thing { get; set; }
 

@@ -5,7 +5,7 @@ using LoanAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data;
-//TO VIEW MODEL Y OTRAS FUNCIONES DE MAPPEADO REACER CON AUTOMAPPER
+
 namespace LoanAPI.Controllers
 {
     public class ThingController : Controller
@@ -78,7 +78,7 @@ namespace LoanAPI.Controllers
             await uow.CompleteAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Edit(int? id) //La accion se llama Edit, pero es un GET? Como es eso?
+        public async Task<IActionResult> Edit(int? id) 
         {
             var lista = await uow.CategoryRepository.GetAllAsync();
             ViewData["Categorias"] = new SelectList(lista, "Id", "Description");

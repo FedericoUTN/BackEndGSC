@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using LoanAPI.Entities;
 using System.Text;
 using LoanAPI.DataAccess;
+using LoanAPI.Services;
 
 namespace LoanAPI.Controllers
 {
@@ -15,12 +16,16 @@ namespace LoanAPI.Controllers
     {
         private readonly IJwtHandler jwtHandler;
         private readonly IUnityOfWork ouw;
+        //private readonly IAccountService accountService;
         public AccountsController(
             IJwtHandler jwtHandler
-            ,IUnityOfWork ouw)
+            ,IUnityOfWork ouw
+            //,IAccountService accountService
+            )
         {
             this.jwtHandler = jwtHandler;
             this.ouw = ouw;
+            //this.accountService = accountService;
         }
 
         [HttpPost("Register")]

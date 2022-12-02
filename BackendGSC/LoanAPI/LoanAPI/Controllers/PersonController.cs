@@ -40,6 +40,7 @@ namespace LoanAPI.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public async Task<List<Person>> GetAllAsync()
         {
             var people = await uow.PersonRepository.GetAllAsync();
@@ -47,6 +48,7 @@ namespace LoanAPI.Controllers
         }
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Person>> GetByIdAsync(int id)
         {
             var person = await uow.PersonRepository.GetByIdAsync(id);

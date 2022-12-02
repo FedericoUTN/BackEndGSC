@@ -1,5 +1,6 @@
 using LoanAPI.Configuration;
 using LoanAPI.DataAccess;
+using LoanAPI.Extensions;
 using LoanAPI.Handlers;
 using LoanAPI.Protos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -8,19 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(
-        builder =>
-        {
+builder.Services.ConfigureCors();
 
-            //you can configure your custom policy
-            builder.AllowAnyOrigin()
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
-        });
-});
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -67,11 +57,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -88,15 +76,10 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//test, incluso el .EnableGrpcWeb()
-//app.UseGrpcWeb();
-
 app.MapGrpcService<GrpcLoanService>();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home }/{action=Index}/{id?}");
-
-
 
 app.Run();

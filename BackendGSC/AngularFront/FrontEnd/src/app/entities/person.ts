@@ -8,7 +8,7 @@ export class Person {
     public address : Address,
     public id? : number
     ){
-        this.address = new Address();
+        
     }
     
 }

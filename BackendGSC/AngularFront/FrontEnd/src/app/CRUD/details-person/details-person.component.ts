@@ -54,9 +54,9 @@ export class DetailsPersonComponent implements OnInit {
       LastName : this.person.lastName,
       Email : this.person.email,
       Address : {
-        Street : this.person.address.street,
-        City : this.person.address.city,
-        Number : this.person.address.number
+        Street : this.person.address.street!,
+        City : this.person.address.city!,
+        Number : this.person.address.number!
       } 
     });
   }
